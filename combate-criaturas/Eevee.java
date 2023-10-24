@@ -1,0 +1,49 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class Eevee here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Eevee extends Criatura
+{
+    /**
+     * Act - do whatever the Eevee wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    
+    public Eevee(String nombre, boolean imagenEspejada, int ataque, int defensa, int velocidad) {
+        super(nombre, 27, new String[] { "Placaje", "Gruñido", "Ataque Rápido", "Mordida" }, imagenEspejada,
+                new String[] { "Causa un daño moderado a un enemigo", "Causa un daño moderado a un enemigo", "Causa un daño moderado a un enemigo", "Causa un daño elevado a un enemigo" },
+                ataque, defensa, velocidad);
+    }
+    
+    public Eevee(String nombre) {
+        this(nombre, false, 5, 3, 5);
+    }
+
+    public void atacar2(Criatura otro) {
+        atacar1(otro);
+    }
+
+    public boolean puedeRealizarAtaque2En(Criatura otro) {
+        return true;
+    }
+
+    public void atacar3(Criatura otro) {
+        atacar1(otro);
+    }
+
+    public boolean puedeRealizarAtaque3En(Criatura otro) {
+        return true;
+    }
+
+    public void atacar4(Criatura otro) {
+        otro.recibirGolpeCritico(7);
+    }
+
+    public boolean puedeRealizarAtaque4En(Criatura otro) {
+        return true;
+    }
+}

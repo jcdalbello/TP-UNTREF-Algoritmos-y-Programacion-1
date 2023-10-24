@@ -15,7 +15,7 @@ public class Squirtle extends Criatura
     }
 
     public Squirtle(String nombre) {
-        this(nombre, false, 4, 3, 4);
+        this(nombre, true, 4, 3, 4);
     }
 
     public void atacar2(Criatura otro) {
