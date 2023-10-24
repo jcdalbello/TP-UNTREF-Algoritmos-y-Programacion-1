@@ -8,13 +8,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Bulbasaur extends Criatura
 {
-    public Bulbasaur(String nombre, boolean imagenEspejada) {
+    public Bulbasaur(String nombre, boolean imagenEspejada, int ataque, int defensa) {
         super(nombre, 27, new String[] { "Placaje", "- Gruñido -", "- Drenadoras -", "- Polvo Veneno -" }, imagenEspejada,
-                new String[] { "Causa un daño moderado a un enemigo", "Baja un nivel el Ataque al rival", "Causa un daño moderado a un enemigo", "Provoca Envenenamiento con daño elevado" });
+                new String[] { "Causa un daño moderado a un enemigo", "Baja un nivel el Ataque al rival", "Causa un daño moderado a un enemigo", "Provoca Envenenamiento con daño elevado" },
+                ataque, defensa);
     }
 
     public Bulbasaur(String nombre) {
-        this(nombre, false);
+        this(nombre, false, 5, 3);
     }
 
     public void atacar2(Criatura otro) {

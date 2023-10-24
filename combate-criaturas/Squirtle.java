@@ -8,13 +8,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Squirtle extends Criatura
 {
-    public Squirtle(String nombre, boolean imagenEspejada) {
+    public Squirtle(String nombre, boolean imagenEspejada, int ataque, int defensa) {
         super(nombre, 21, new String[] { "Placaje", "- Refugio -", "- Pistola Agua -", "- Acua Cola -" }, imagenEspejada,
-                new String[] { "Causa un daño moderado a un enemigo", "Aumenta un nivel la Defensa al usuario.", "Causa un daño moderado a un enemigo", "Causa un daño elevado a un enemigo" });
+                new String[] { "Causa un daño moderado a un enemigo", "Aumenta un nivel la Defensa al usuario.", "Causa un daño moderado a un enemigo", "Causa un daño elevado a un enemigo" },
+                ataque, defensa);
     }
 
     public Squirtle(String nombre) {
-        this(nombre, false);
+        this(nombre, false, 5, 3);
     }
 
     public void atacar2(Criatura otro) {

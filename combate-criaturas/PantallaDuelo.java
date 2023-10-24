@@ -29,8 +29,8 @@ public class PantallaDuelo extends World {
     private void agregarCriaturas() {
         criaturas[0] = new Pikachu("Pikachu");
         criaturas[1] = new Squirtle("Squirtle");
-        criaturas[2] = new Bulbasaur("Bulbasaur", true);
-        criaturas[3] = new Chikorita("Chikorita", true);
+        criaturas[2] = new Bulbasaur("Bulbasaur", true, 5, 3);
+        criaturas[3] = new Chikorita("Chikorita", true, 5, 3);
 
         addObject(criaturas[0], 100, 80);
         addObject(criaturas[1], 240, 80);

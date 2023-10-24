@@ -8,13 +8,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Chikorita extends Criatura
 {
-    public Chikorita(String nombre, boolean imagenEspejada) {
+    public Chikorita(String nombre, boolean imagenEspejada, int ataque, int defensa) {
         super(nombre, 21, new String[] { "Placaje", "- Hoja Afilada -", "- Hoja Mágica -", "- Aromaterapia -" }, imagenEspejada,
-                new String[] { "Causa un daño moderado a un enemigo", "Golpe crítico", "Causa un daño moderado a un enemigo", "Cura a cualquier miembro de tu equipo." });
+                new String[] { "Causa un daño moderado a un enemigo", "Golpe crítico", "Causa un daño moderado a un enemigo", "Cura a cualquier miembro de tu equipo." },
+                ataque, defensa);
     }
 
     public Chikorita(String nombre) {
-        this(nombre, false);
+        this(nombre, false, 5, 3);
     }
 
     public void atacar2(Criatura otro) {
