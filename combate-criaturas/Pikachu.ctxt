@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Pikachu
-comment1.params=nombre\ imagenEspejada\ ataque\ defensa
-comment1.target=Pikachu(java.lang.String,\ boolean,\ int,\ int)
+comment1.params=nombre\ imagenEspejada\ ataque\ defensa\ velocidad
+comment1.target=Pikachu(java.lang.String,\ boolean,\ int,\ int,\ int)
 comment2.params=nombre
 comment2.target=Pikachu(java.lang.String)
 comment3.params=otro
