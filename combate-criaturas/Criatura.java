@@ -1,20 +1,27 @@
 import java.util.List;
+import java.lang.Math;
 
 import greenfoot.*;
+
+// ESTA ES UNA COPIA DEL PROYECTO, NO SE ESTA MODIFICANDO
+// EL QUE ESTA SUBIDO A GITHUB
 
 public abstract class Criatura extends Actor {
     protected final String nombre;
     protected final int vidaMaxima;
+    protected final int ataqueOriginal;
+    protected final int defensaOriginal;
 
     protected final String[] nombresAtaque;
     protected final String[] detallesAtaque;
 
     protected final boolean equipo1;
-
+    
+    protected LoggerExtraFunctions logger;
+    
     protected int vida;
     protected int ataque;
     protected int defensa;
-    protected int velocidad;
 
     private UIInfoCriatura uiInfoCriatura;
 
@@ -23,10 +30,12 @@ public abstract class Criatura extends Actor {
 
     private final MyGreenfootImage imagenOriginal;
 
-    public Criatura(String nombre, int vida, String[] nombresAtaque, boolean equipo1, String[] detallesAtaque, int ataque, int defensa, int velocidad)  {
+    public Criatura(String nombre, int vida, int ataque, int defensa, String[] nombresAtaque, boolean equipo1, String[] detallesAtaque) {
         this.nombre = nombre;
 
         this.vidaMaxima = vida;
+        this.ataqueOriginal = ataque;
+        this.defensaOriginal = defensa;
 
         this.nombresAtaque = nombresAtaque;
         this.detallesAtaque = detallesAtaque;
@@ -34,9 +43,10 @@ public abstract class Criatura extends Actor {
         this.vida = vida;
         this.ataque = ataque;
         this.defensa = defensa;
-        this.velocidad = velocidad;
-
+        
         this.equipo1 = equipo1;
+        
+        // TODO: Hay que limpiar la consola para que no muestre los logs pasados;
 
         this.imagenOriginal = new MyGreenfootImage(getImage());
         this.imagenOriginal.scale(130, 130);
@@ -75,23 +85,28 @@ public abstract class Criatura extends Actor {
             ((PantallaDuelo)getWorld()).click(this);
         }
 
-        if (_visualHover != visualHover || _visualSeleccionado != visualSeleccionado) {
-            render();
-        }
+        render();
     }
 
     public void render() {
         MyGreenfootImage nuevaImagen = new MyGreenfootImage(imagenOriginal) {
                 public void configurar() {
+                    if (vida == 0) {
+                        grayscale();
+                    }
+
                     if (!equipo1) {
                         flipHorizontally();
                     }
-                    if (visualHover) {
+                    
+                    if (visualHover && vida > 0) {
                         scaleToRatio(1.15);
                     }
+                    
                     if (visualSeleccionado) {
                         highlight();
                     }
+                    
                     shadow();
                 }
             };
@@ -100,7 +115,12 @@ public abstract class Criatura extends Actor {
     }
 
     public void atacar1(Criatura otro) {
-        otro.recibirDaño(this);
+        int dañoRecibido = otro.recibirDaño(this);
+        String nombreDelAtaque = this.getNombresAtaque()[0];
+        
+        logger.ataque(this, otro, nombreDelAtaque);
+        logger.calcularDañoCon(this.getAtaque());
+        logger.dañoRecibido(otro, dañoRecibido);
     }
 
     public abstract void atacar2(Criatura otro);
@@ -123,56 +143,78 @@ public abstract class Criatura extends Actor {
 
     public abstract boolean puedeRealizarAtaque4En(Criatura otro);
 
-    protected void recibirDaño(Criatura atacante) {
-        int daño = 2*(1 + (atacante.ataque / this.defensa));
-        if (daño > 0) {
-            this.vida -= daño;
+    // Tal vez se puedan hacer dos metodos calculoDeDaño(), uno que tenga en cuenta el factor de tipo y otro que no
+    private int calculoDelDaño(int ataquePropio, int defensaEnemigo/*, factor de tipo del usuario, factor de tipo del enemigo?*/) {
+        return (int)Math.ceil(2 * (1 + ataquePropio/defensaEnemigo) * ((Math.random()% 1.25) + 0.5) /* * Factor de tipo*/);
+    }
+
+    protected int recibirDaño(Criatura atacante) {
+        int dañoRecibido = calculoDelDaño(atacante.ataque, this.defensa);
+        
+        if (this.vida <= dañoRecibido) {
+            this.setVida(0);          
+        }
+        else {
+            this.setVida(this.getVida() - dañoRecibido);
         }
         
-        //Chequea si el pokemon se desmayó y actualiza la UI en cada caso
-        if (vida <= 0) {
-            vida = 0;
-            uiInfoCriatura.actualizar();
-            desmayarse();
-        } else {
-            uiInfoCriatura.actualizar();
+        if (this.getVida() == 0) {
+            logger.desmayo(this);
         }
+
+        return dañoRecibido;
     }
     
-    public void modificarDefensa(int puntosModificados, boolean aumentaDefensa) {
-        defensa = aumentaDefensa ? defensa + puntosModificados : defensa - puntosModificados;
-        uiInfoCriatura.actualizar();
-    }
-    
-    public void recibirGolpeCritico(int puntosPerdidos) {
-        if (puntosPerdidos > 0) {
-            this.vida -= puntosPerdidos;
+    protected int recibirDañoFijo(int dañoFijo) {
+        if (this.vida <= dañoFijo) {
+            this.setVida(0);          
+        }
+        else {
+            this.setVida(this.getVida() - dañoFijo);
         }
         
-        //Chequea si el pokemon se desmayó y actualiza la UI en cada caso
-        if (vida <= 0) {
-            vida = 0;
-            uiInfoCriatura.actualizar();
-            desmayarse();
-        } else {
-            uiInfoCriatura.actualizar();
+        if (this.getVida() == 0) {
+            logger.desmayo(this);
         }
-    }
-    
-    protected String desmayarse() {
-        return nombre + " se ha desmayado! Ahora está fuera de combate.";
-    }
-    
-    public boolean estaDesmayado() {
-        return vida == 0; 
+        
+        return dañoFijo;
     }
 
     public int getVida() {
         return vida;
     }
+    
+    public void setVida(int vida) {
+        this.vida = vida;
+        uiInfoCriatura.actualizar();
+    }
 
     public int getVidaMaxima() {
         return vidaMaxima;
+    }
+
+    public int getAtaque() {
+        return ataque;
+    }
+    
+    public void setAtaque(int ataque) {
+        this.ataque = ataque > 0 ? ataque : 1;
+    }
+    
+    public int getAtaqueOriginal() {
+        return ataqueOriginal;
+    }
+
+    public int getDefensa() {
+        return defensa;
+    }
+    
+    public void setDefensa(int defensa) {
+        this.defensa = defensa > 0 ? defensa : 1;
+    }
+    
+    public int getDefensaOriginal() {
+        return defensaOriginal;
     }
 
     public boolean esEquipo1() {
@@ -198,9 +240,9 @@ public abstract class Criatura extends Actor {
 
     public String getStats() {
         return nombre + " (" + this.getClass().getSimpleName() + ")\n" +
-        " - Ataque: " + ataque + "\n" + 
-        " - Defensa: " + defensa + "\n" +
-        " - Velocidad: " + velocidad
+        " - Ataque: " + this.ataque + "\n" +
+        " - Defensa: " + this.defensa + "\n" +
+        " - Velocidad: 0\n"
         ;
     }
 }
