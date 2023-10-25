@@ -3,6 +3,7 @@ import greenfoot.Color;
 import greenfoot.Greenfoot;
 import greenfoot.GreenfootImage;
 
+
 public class Boton extends Actor {
     private String texto;
     private int size;
