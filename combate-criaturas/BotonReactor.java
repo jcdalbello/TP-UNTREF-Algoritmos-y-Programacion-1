@@ -16,20 +16,20 @@ public class BotonReactor {
     }
 
     public void run() {
-        // PantallaDuelo pantallaDuelo = ((PantallaDuelo) uiAtaques.getWorld());
+        PantallaDuelo pantallaDuelo = ((PantallaDuelo) uiAtaques.getWorld());
 
         if (uiAtaques.botonSeleccionado == boton) {
-        	// Si clickeo lo que está seleccionado, lo des-selecciona
+            // Si clickeo lo que está seleccionado, lo des-selecciona
             uiAtaques.ataque = null;
             uiAtaques.resetColorBotones();
             uiAtaques.descripcion.setText("");
             uiAtaques.botonSeleccionado = null;
         } else {
-        	// Si clickeo algo NO seleccionado, lo selecciona y prepara el posible ataque
+            // Si clickeo algo NO seleccionado, lo selecciona y prepara el posible ataque
             uiAtaques.ataque = () -> {
                 if (puedeAtacarlo(uiAtaques.ataqueObjetivo)) {
                     atacar(uiAtaques.ataqueObjetivo);
-                    // pantallaDuelo.turno();
+                    pantallaDuelo.turno();
                 }
             };
             uiAtaques.resetColorBotones();
@@ -49,32 +49,33 @@ public class BotonReactor {
 
     public boolean puedeAtacarlo(Criatura otro) {
         switch (this.numeroAtaque) {
-		case 1:
-		    return this.criaturaActual.puedeRealizarAtaque1En(otro);
-		case 2:
-		    return this.criaturaActual.puedeRealizarAtaque2En(otro);
-		case 3:
-		    return this.criaturaActual.puedeRealizarAtaque3En(otro);
-		case 4:
-		    return this.criaturaActual.puedeRealizarAtaque4En(otro);
-		}
-		return false;
+        case 1:
+            return this.criaturaActual.puedeRealizarAtaque1En(otro) && otro.getVida() > 0;
+        case 2:
+            return this.criaturaActual.puedeRealizarAtaque2En(otro) && otro.getVida() > 0;
+        case 3:
+            return this.criaturaActual.puedeRealizarAtaque3En(otro) && otro.getVida() > 0;
+        case 4:
+            return this.criaturaActual.puedeRealizarAtaque4En(otro) && otro.getVida() > 0;
+        }
+        
+        return false;
     }
 
     public void atacar(Criatura otro) {
         switch (this.numeroAtaque) {
-		case 1:
-		    this.criaturaActual.atacar1(otro);
-		    break;
-		case 2:
-		    this.criaturaActual.atacar2(otro);
-		    break;
-		case 3:
-		    this.criaturaActual.atacar3(otro);
-		    break;
-		case 4:
-		    this.criaturaActual.atacar4(otro);
-		    break;
-		}
+        case 1:
+            this.criaturaActual.atacar1(otro);
+            break;
+        case 2:
+            this.criaturaActual.atacar2(otro);
+            break;
+        case 3:
+            this.criaturaActual.atacar3(otro);
+            break;
+        case 4:
+            this.criaturaActual.atacar4(otro);
+            break;
+        }
     }
 }

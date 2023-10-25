@@ -9,9 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Charmander extends Criatura
 {
     public Charmander(String nombre, boolean imagenEspejada, int ataque, int defensa, int velocidad) {
-        super(nombre, 27, new String[] { "Placaje", "Gruñido", "Cara de susto", "Lanzallamas" }, imagenEspejada,
-                new String[] { "Causa un daño moderado a un enemigo", "Baja dos puntos la defensa al rival", "Baja dos puntos de velocidad al rival", "Provoca quemaduras con con daño elevado" },
-                ataque, defensa, velocidad);
+        super(nombre, 22, 24, 15, new String[] { "Placaje", "Gruñido", "Cara de susto", "Lanzallamas" }, imagenEspejada,
+                new String[] { "Causa un daño moderado a un enemigo", "Baja dos puntos la defensa al rival", "Baja dos puntos de velocidad al rival", "Provoca quemaduras con con daño elevado" });
     }
 
     public Charmander(String nombre) {
@@ -19,8 +18,8 @@ public class Charmander extends Criatura
     }
 
     public void atacar2(Criatura otro) {
-        otro.modificarDefensa(2, false);
-        //atacar1(otro);
+        // otro.modificarDefensa(2, false);
+        atacar1(otro);
     }
 
     public boolean puedeRealizarAtaque2En(Criatura otro) {

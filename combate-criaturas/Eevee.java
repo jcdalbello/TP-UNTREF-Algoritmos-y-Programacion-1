@@ -14,9 +14,8 @@ public class Eevee extends Criatura
      */
     
     public Eevee(String nombre, boolean imagenEspejada, int ataque, int defensa, int velocidad) {
-        super(nombre, 27, new String[] { "Placaje", "Gruñido", "Ataque Rápido", "Mordida" }, imagenEspejada,
-                new String[] { "Causa un daño moderado a un enemigo", "Causa un daño moderado a un enemigo", "Causa un daño moderado a un enemigo", "Causa un daño elevado a un enemigo" },
-                ataque, defensa, velocidad);
+        super(nombre, 20, 19, 19, new String[] { "Placaje", "Gruñido", "Ataque Rápido", "Mordida" }, imagenEspejada,
+                new String[] { "Causa un daño moderado a un enemigo", "Causa un daño moderado a un enemigo", "Causa un daño moderado a un enemigo", "Causa un daño elevado a un enemigo" });
     }
     
     public Eevee(String nombre) {
@@ -40,7 +39,8 @@ public class Eevee extends Criatura
     }
 
     public void atacar4(Criatura otro) {
-        otro.recibirGolpeCritico(7);
+        // otro.recibirGolpeCritico(7);
+        atacar1(otro);
     }
 
     public boolean puedeRealizarAtaque4En(Criatura otro) {
