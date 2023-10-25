@@ -1,11 +1,25 @@
-public class Pikachu extends Criatura {
-    public Pikachu(String nombre, boolean imagenEspejada, int ataque, int defensa, int velocidad) {
-        super(nombre, 27, new String[] { "Placaje", "Gruñido", "Impactrueno", "Onda Trueno" }, imagenEspejada,
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class Eevee here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Eevee extends Criatura
+{
+    /**
+     * Act - do whatever the Eevee wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    
+    public Eevee(String nombre, boolean imagenEspejada, int ataque, int defensa, int velocidad) {
+        super(nombre, 27, new String[] { "Placaje", "Gruñido", "Ataque Rápido", "Mordida" }, imagenEspejada,
                 new String[] { "Causa un daño moderado a un enemigo", "Causa un daño moderado a un enemigo", "Causa un daño moderado a un enemigo", "Causa un daño elevado a un enemigo" },
                 ataque, defensa, velocidad);
     }
-
-    public Pikachu(String nombre) {
+    
+    public Eevee(String nombre) {
         this(nombre, false, 5, 3, 5);
     }
 

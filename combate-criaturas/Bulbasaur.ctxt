@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Bulbasaur
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Bulbasaur\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=nombre\ imagenEspejada
-comment1.target=Bulbasaur(java.lang.String,\ boolean)
+comment1.params=nombre\ imagenEspejada\ ataque\ defensa\ velocidad
+comment1.target=Bulbasaur(java.lang.String,\ boolean,\ int,\ int,\ int)
 comment2.params=nombre
 comment2.target=Bulbasaur(java.lang.String)
 comment3.params=otro

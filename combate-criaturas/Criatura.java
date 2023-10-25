@@ -12,6 +12,9 @@ public abstract class Criatura extends Actor {
     protected final boolean equipo1;
 
     protected int vida;
+    protected int ataque;
+    protected int defensa;
+    protected int velocidad;
 
     private UIInfoCriatura uiInfoCriatura;
 
@@ -20,7 +23,7 @@ public abstract class Criatura extends Actor {
 
     private final MyGreenfootImage imagenOriginal;
 
-    public Criatura(String nombre, int vida, String[] nombresAtaque, boolean equipo1, String[] detallesAtaque) {
+    public Criatura(String nombre, int vida, String[] nombresAtaque, boolean equipo1, String[] detallesAtaque, int ataque, int defensa, int velocidad)  {
         this.nombre = nombre;
 
         this.vidaMaxima = vida;
@@ -29,6 +32,9 @@ public abstract class Criatura extends Actor {
         this.detallesAtaque = detallesAtaque;
 
         this.vida = vida;
+        this.ataque = ataque;
+        this.defensa = defensa;
+        this.velocidad = velocidad;
 
         this.equipo1 = equipo1;
 
@@ -117,10 +123,48 @@ public abstract class Criatura extends Actor {
 
     public abstract boolean puedeRealizarAtaque4En(Criatura otro);
 
-    protected int recibirDaño(Criatura atacante) {
-        this.vida -= 5;
+    protected void recibirDaño(Criatura atacante) {
+        int daño = 2*(1 + (atacante.ataque / this.defensa));
+        if (daño > 0) {
+            this.vida -= daño;
+        }
+        
+        //Chequea si el pokemon se desmayó y actualiza la UI en cada caso
+        if (vida <= 0) {
+            vida = 0;
+            uiInfoCriatura.actualizar();
+            desmayarse();
+        } else {
+            uiInfoCriatura.actualizar();
+        }
+    }
+    
+    public void modificarDefensa(int puntosModificados, boolean aumentaDefensa) {
+        defensa = aumentaDefensa ? defensa + puntosModificados : defensa - puntosModificados;
         uiInfoCriatura.actualizar();
-        return 5;
+    }
+    
+    public void recibirGolpeCritico(int puntosPerdidos) {
+        if (puntosPerdidos > 0) {
+            this.vida -= puntosPerdidos;
+        }
+        
+        //Chequea si el pokemon se desmayó y actualiza la UI en cada caso
+        if (vida <= 0) {
+            vida = 0;
+            uiInfoCriatura.actualizar();
+            desmayarse();
+        } else {
+            uiInfoCriatura.actualizar();
+        }
+    }
+    
+    protected String desmayarse() {
+        return nombre + " se ha desmayado! Ahora está fuera de combate.";
+    }
+    
+    public boolean estaDesmayado() {
+        return vida == 0; 
     }
 
     public int getVida() {
@@ -154,9 +198,9 @@ public abstract class Criatura extends Actor {
 
     public String getStats() {
         return nombre + " (" + this.getClass().getSimpleName() + ")\n" +
-        " - Ataque: 0\n" +
-        " - Defensa: 0\n" +
-        " - Velocidad: 0\n"
+        " - Ataque: " + ataque + "\n" + 
+        " - Defensa: " + defensa + "\n" +
+        " - Velocidad: " + velocidad
         ;
     }
 }

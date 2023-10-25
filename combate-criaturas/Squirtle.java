@@ -8,21 +8,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Squirtle extends Criatura
 {
-    public Squirtle(String nombre, boolean imagenEspejada) {
-        super(nombre, 21, new String[] { "Placaje", "- Refugio -", "- Pistola Agua -", "- Acua Cola -" }, imagenEspejada,
-                new String[] { "Causa un daño moderado a un enemigo", "Aumenta un nivel la Defensa al usuario.", "Causa un daño moderado a un enemigo", "Causa un daño elevado a un enemigo" });
+    public Squirtle(String nombre, boolean imagenEspejada, int ataque, int defensa, int velocidad) {
+        super(nombre, 21, new String[] { "Placaje", "Refugio", "Pistola Agu", "Acua Cola" }, imagenEspejada,
+                new String[] { "Causa un daño moderado a un enemigo", "Aumenta en dos puntos la Defensa a si mismo.", "Causa un daño moderado a un enemigo", "Causa un daño elevado a un enemigo" },
+                ataque, defensa, velocidad);
     }
 
     public Squirtle(String nombre) {
-        this(nombre, false);
+        this(nombre, true, 4, 3, 4);
     }
 
     public void atacar2(Criatura otro) {
-        atacar1(otro);
+        modificarDefensa(2, true);
     }
 
     public boolean puedeRealizarAtaque2En(Criatura otro) {
-        return false;
+        return true;
     }
 
     public void atacar3(Criatura otro) {
@@ -30,14 +31,14 @@ public class Squirtle extends Criatura
     }
 
     public boolean puedeRealizarAtaque3En(Criatura otro) {
-        return false;
+        return true;
     }
 
     public void atacar4(Criatura otro) {
-        atacar1(otro);
+        otro.recibirGolpeCritico(6);
     }
 
     public boolean puedeRealizarAtaque4En(Criatura otro) {
-        return false;
+        return true;
     }
 }
