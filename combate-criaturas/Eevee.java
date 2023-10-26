@@ -13,13 +13,13 @@ public class Eevee extends Criatura
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     
-    public Eevee(String nombre, boolean imagenEspejada, int ataque, int defensa, int velocidad) {
+    public Eevee(String nombre, boolean imagenEspejada) {
         super(nombre, 20, 19, 19, new String[] { "Placaje", "Gruñido", "Ataque Rápido", "Mordida" }, imagenEspejada,
                 new String[] { "Causa un daño moderado a un enemigo", "Causa un daño moderado a un enemigo", "Causa un daño moderado a un enemigo", "Causa un daño elevado a un enemigo" });
     }
     
     public Eevee(String nombre) {
-        this(nombre, false, 5, 3, 5);
+        this(nombre, false);
     }
 
     public void atacar2(Criatura otro) {
