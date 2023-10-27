@@ -10,8 +10,8 @@ public class UIAtaques extends Actor {
     Criatura[] criaturas;
     Boton botonSeleccionado;
     Parrafo descripcion;
-    Runnable ataque = null;
-    Criatura ataqueObjetivo = null;
+    Runnable ataque = null; 
+    Criatura ataqueObjetivo = null; 
     Criatura hoverObjetivo = null;
 
     public UIAtaques(Criatura[] criaturas) {

@@ -22,6 +22,7 @@ public abstract class Criatura extends Actor {
     protected int vida;
     protected int ataque;
     protected int defensa;
+    protected Tipo tipo;
 
     private UIInfoCriatura uiInfoCriatura;
 
@@ -142,14 +143,28 @@ public abstract class Criatura extends Actor {
     public abstract boolean puedeRealizarAtaque3En(Criatura otro);
 
     public abstract boolean puedeRealizarAtaque4En(Criatura otro);
+    
+    public double factorTipo(Tipo tipoOponente) {
+        switch (tipo) {
+        case FUEGO:
+            return (tipoOponente == Tipo.PLANTA) ? 2.0 : (tipoOponente == Tipo.AGUA) ? 0.5 : 1.0;
+        case AGUA:
+            return (tipoOponente == Tipo.FUEGO) ? 2.0 : (tipoOponente == Tipo.PLANTA) ? 0.5 : 1.0;
+        case PLANTA:
+            return (tipoOponente == Tipo.AGUA) ? 2.0 : (tipoOponente == Tipo.FUEGO) ? 0.5 : 1.0;
+        default:
+            return 1.0; // Otros tipos por defecto no tienen ventajas ni desventajas
+        }
+    } 
 
     // Tal vez se puedan hacer dos metodos calculoDeDaño(), uno que tenga en cuenta el factor de tipo y otro que no
-    private int calculoDelDaño(int ataquePropio, int defensaEnemigo/*, factor de tipo del usuario, factor de tipo del enemigo?*/) {
-        return (int)Math.ceil(2 * (1 + ataquePropio/defensaEnemigo) * ((Math.random()% 1.25) + 0.5) /* * Factor de tipo*/);
+    private int calculoDelDaño(int ataquePropio, int defensaEnemigo, double factorTipo) {
+        return (int)Math.ceil(2 * (1 + ataquePropio/defensaEnemigo) * ((Math.random()% 1.25) + 0.5) * factorTipo);
     }
 
     protected int recibirDaño(Criatura atacante) {
-        int dañoRecibido = calculoDelDaño(atacante.ataque, this.defensa);
+        double factorTipo = factorTipo(atacante.tipo);
+        int dañoRecibido = calculoDelDaño(atacante.ataque, this.defensa, factorTipo);
         
         if (this.vida <= dañoRecibido) {
             this.setVida(0);          

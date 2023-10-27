@@ -4,7 +4,7 @@ public class Pikachu extends Criatura {
             new String[] { "Causa un daño moderado a un enemigo",
                            "Reduce el ataque del enemigo en un 25%",
                            "Causa un daño de tipo electrico a un enemigo",
-                           "Causa un gran daño de tipo electrico al enemigo, pero el usuario recibe daño de retroceso." }
+                           "Causa un gran daño de tipo electrico al enemigo, pero el usuario recibe daño de retroceso."}
             );
     }
 
