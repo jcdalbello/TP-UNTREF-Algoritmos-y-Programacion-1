@@ -49,4 +49,20 @@ public class LoggerExtraFunctions extends Logger
     public static void sacrificio(Criatura criatura) {
         System.out.println("La criatura " + criatura.toString() + " se ha sacrificado por el bien del equipo");
     }
+
+    public static void esSuperEfectivo() {
+        System.out.println("El ataque es superefectivo!");
+    }
+    
+    public static void esPocoEfectivo() {
+        System.out.println("El ataque es poco efectivo");
+    }
+
+    public static void dañoDeRetroceso(Criatura criatura) {
+        System.out.println("La criatura " + criatura.toString() + " ha recibido daño de retroceso");
+    }
+    
+    public static void imprimirCualquierMensaje(String mensaje) {
+        System.out.println(mensaje);
+    }
 }

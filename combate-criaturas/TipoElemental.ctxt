@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=TipoElemental
+comment1.params=tipo1\ tipo2
+comment1.target=int\ efectividadDeTipoContra(java.lang.String,\ java.lang.String)
+comment1.text=\r\n\ retorno\:\r\n\ \ \ \ \ \ 1,\ si\ tipo1\ es\ efectivo\ contra\ tipo2\r\n\ \ \ \ \ -1,\ si\ tipo1\ es\ poco\ efectivo\ contra\ tipo2\r\n\ \ \ \ \ \ 0,\ si\ tipo1\ tiene\ efectividad\ normal\ contra\ tipo2\r\n
+numComments=2
