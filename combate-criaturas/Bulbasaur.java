@@ -56,7 +56,7 @@ public class Bulbasaur extends Criatura
         this.logger.afectarCaracteristica(this, "Ataque", this.getAtaque(), (int)(this.getAtaque() / 2), false);
         this.setAtaque(this.getAtaque() / 2);        
         
-        logDeAtaqueYCalculoDeDaño(this, otro, nombreDelAtaque, dañoRecibido);
+        logDeAtaqueYCalculoDeDaño(this, otro, nombreDelAtaque, tipoDelAtaque, dañoRecibido);
     }
 
     public boolean puedeRealizarAtaque4En(Criatura otro) {

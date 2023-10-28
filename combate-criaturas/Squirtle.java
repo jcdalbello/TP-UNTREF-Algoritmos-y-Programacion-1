@@ -43,7 +43,7 @@ public class Squirtle extends Criatura
         int efectividad = TipoElemental.efectividadDeTipoContra(tipoDelAtaque, otro.getTipo());
         int dañoRecibido = otro.recibirDaño(this, efectividad);   
         
-        logDeAtaqueYCalculoDeDaño(this, otro, nombreDelAtaque, dañoRecibido);
+        logDeAtaqueYCalculoDeDaño(this, otro, nombreDelAtaque, tipoDelAtaque, dañoRecibido);
     }
 
     public boolean puedeRealizarAtaque3En(Criatura otro) {
@@ -60,7 +60,7 @@ public class Squirtle extends Criatura
         this.logger.afectarCaracteristica(this, "Defensa", this.getDefensa(), (int)(this.getDefensa() / 2), false);
         this.setDefensa(this.getDefensa() / 2);        
         
-        logDeAtaqueYCalculoDeDaño(this, otro, nombreDelAtaque, dañoRecibido);
+        logDeAtaqueYCalculoDeDaño(this, otro, nombreDelAtaque, tipoDelAtaque, dañoRecibido);
     }
 
     public boolean puedeRealizarAtaque4En(Criatura otro) {

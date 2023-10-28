@@ -123,18 +123,18 @@ public abstract class Criatura extends Actor {
         int efectividad = TipoElemental.efectividadDeTipoContra(tipoDelAtaque, otro.getTipo());
         int dañoRecibido = otro.recibirDaño(this, efectividad);
 
-        logDeAtaqueYCalculoDeDaño(this, otro, nombreDelAtaque, dañoRecibido);
+        logDeAtaqueYCalculoDeDaño(this, otro, nombreDelAtaque, tipoDelAtaque, dañoRecibido);
     }
 
-    protected void logDeAtaqueYCalculoDeDaño(Criatura criaturaActual, Criatura otro, String nombreDelAtaque, int dañoRecibido) {
+    protected void logDeAtaqueYCalculoDeDaño(Criatura criaturaActual, Criatura otro, String nombreDelAtaque, String tipoDelAtaque, int dañoRecibido) {
         this.logger.ataque(criaturaActual, otro, nombreDelAtaque);
-        logDeEfectividadDeAtaque(criaturaActual, otro);
+        logDeEfectividadDeAtaque(tipoDelAtaque, otro);
         this.logger.calcularDañoCon(this.getAtaque());
         this.logger.dañoRecibido(otro, dañoRecibido);
     }
 
-    protected void logDeEfectividadDeAtaque(Criatura atacante, Criatura defensora) {
-        int efectividad = TipoElemental.efectividadDeTipoContra(atacante.getTipo(), defensora.getTipo());
+    protected void logDeEfectividadDeAtaque(String tipoDelAtaque, Criatura defensora) {
+        int efectividad = TipoElemental.efectividadDeTipoContra(tipoDelAtaque, defensora.getTipo());
 
         if (efectividad == 1) {
             this.logger.esSuperEfectivo();

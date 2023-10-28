@@ -63,7 +63,7 @@ public class Eevee extends Criatura
         
         this.recibirDañoFijo(this.getVidaMaxima() / 2);
         
-        logDeAtaqueYCalculoDeDaño(this, otro, nombreDelAtaque, dañoRecibido);
+        logDeAtaqueYCalculoDeDaño(this, otro, nombreDelAtaque, tipoDelAtaque, dañoRecibido);
         this.logger.dañoDeRetroceso(this);
     }
 

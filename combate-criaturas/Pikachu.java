@@ -33,7 +33,7 @@ public class Pikachu extends Criatura {
         int efectividad = TipoElemental.efectividadDeTipoContra(tipoDelAtaque, otro.getTipo());
         int dañoRecibido = otro.recibirDaño(this, efectividad);
         
-        logDeAtaqueYCalculoDeDaño(this, otro, nombreDelAtaque, dañoRecibido);
+        logDeAtaqueYCalculoDeDaño(this, otro, nombreDelAtaque, tipoDelAtaque, dañoRecibido);
     }
 
     public boolean puedeRealizarAtaque3En(Criatura otro) {
@@ -49,7 +49,7 @@ public class Pikachu extends Criatura {
         
         this.recibirDañoFijo(this.getVidaMaxima() / 2);
         
-        logDeAtaqueYCalculoDeDaño(this, otro, nombreDelAtaque, dañoRecibido);
+        logDeAtaqueYCalculoDeDaño(this, otro, nombreDelAtaque, tipoDelAtaque, dañoRecibido);
         this.logger.dañoDeRetroceso(this);
     }
 

@@ -40,7 +40,7 @@ public class Charmander extends Criatura
         int efectividad = TipoElemental.efectividadDeTipoContra(tipoDelAtaque, otro.getTipo());
         int dañoRecibido = otro.recibirDaño(this, efectividad);
 
-        logDeAtaqueYCalculoDeDaño(this, otro, nombreDelAtaque, dañoRecibido);
+        logDeAtaqueYCalculoDeDaño(this, otro, nombreDelAtaque, tipoDelAtaque, dañoRecibido);
     }
 
     public boolean puedeRealizarAtaque3En(Criatura otro) {
@@ -61,7 +61,7 @@ public class Charmander extends Criatura
         int efectividad = TipoElemental.efectividadDeTipoContra(tipoDelAtaque, otro.getTipo()) + 1;
         int dañoRecibido = otro.recibirDaño(this, efectividad);
 
-        logDeAtaqueYCalculoDeDaño(this, otro, nombreDelAtaque, dañoRecibido);
+        logDeAtaqueYCalculoDeDaño(this, otro, nombreDelAtaque, tipoDelAtaque, dañoRecibido);
         this.logger.dañoDeRetroceso(this);
         this.logger.imprimirCualquierMensaje("La criatura " + this.toString() + " ya no podra volver a usar el ataque " + nombreDelAtaque + " por el resto del combate");
     }
