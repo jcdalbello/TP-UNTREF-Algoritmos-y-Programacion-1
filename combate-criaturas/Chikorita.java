@@ -14,8 +14,8 @@ public class Chikorita extends Criatura
                                "Cura los estados alterados de un miembro del equipo.",
                                "Aumenta el ataque y la defensa de su compañero en un 25%.",
                                 // 'Deseo cura' cura la vida del compañero al 100%, saca los efectos de estado y resetea las caracteristicas
-                               "Cura completamente a su compañero, pero el usuario cae debilitado." }
-                );
+                               "Cura completamente a su compañero, pero el usuario cae debilitado." }, 
+                Tipo.PLANTA);
     }
 
     public Chikorita(String nombre) {
