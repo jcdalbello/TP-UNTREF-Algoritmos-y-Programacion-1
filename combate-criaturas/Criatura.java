@@ -31,7 +31,8 @@ public abstract class Criatura extends Actor {
 
     private final MyGreenfootImage imagenOriginal;
 
-    public Criatura(String nombre, int vida, int ataque, int defensa, String[] nombresAtaque, boolean equipo1, String[] detallesAtaque) {
+    public Criatura(String nombre, int vida, int ataque, int defensa, String[] nombresAtaque, boolean equipo1, 
+                    String[] detallesAtaque, Tipo tipo) {
         this.nombre = nombre;
 
         this.vidaMaxima = vida;
@@ -46,6 +47,7 @@ public abstract class Criatura extends Actor {
         this.defensa = defensa;
         
         this.equipo1 = equipo1;
+        this.tipo = tipo;
         
         // TODO: Hay que limpiar la consola para que no muestre los logs pasados;
 
@@ -144,13 +146,15 @@ public abstract class Criatura extends Actor {
 
     public abstract boolean puedeRealizarAtaque4En(Criatura otro);
     
-    public double factorTipo(Tipo tipoOponente) {
+    public double beneficioPorTipo(Tipo tipoOponente) {
         switch (tipo) {
         case FUEGO:
             return (tipoOponente == Tipo.PLANTA) ? 2.0 : (tipoOponente == Tipo.AGUA) ? 0.5 : 1.0;
         case AGUA:
             return (tipoOponente == Tipo.FUEGO) ? 2.0 : (tipoOponente == Tipo.PLANTA) ? 0.5 : 1.0;
         case PLANTA:
+            return (tipoOponente == Tipo.AGUA) ? 2.0 : (tipoOponente == Tipo.FUEGO) ? 0.5 : 1.0;
+        case ELECTRICO:
             return (tipoOponente == Tipo.AGUA) ? 2.0 : (tipoOponente == Tipo.FUEGO) ? 0.5 : 1.0;
         default:
             return 1.0; // Otros tipos por defecto no tienen ventajas ni desventajas
@@ -163,8 +167,8 @@ public abstract class Criatura extends Actor {
     }
 
     protected int recibirDaño(Criatura atacante) {
-        double factorTipo = factorTipo(atacante.tipo);
-        int dañoRecibido = calculoDelDaño(atacante.ataque, this.defensa, factorTipo);
+        double beneficioPorTipo = beneficioPorTipo(atacante.tipo);
+        int dañoRecibido = calculoDelDaño(atacante.ataque, this.defensa, beneficioPorTipo);
         
         if (this.vida <= dañoRecibido) {
             this.setVida(0);          

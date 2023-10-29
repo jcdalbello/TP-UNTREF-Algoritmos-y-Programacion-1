@@ -13,7 +13,7 @@ public class Squirtle extends Criatura
                 new String[] { "Causa un daño moderado a un enemigo",
                                "Aumenta un nivel la Defensa al usuario.",
                                "Causa un daño moderado a un enemigo",
-                               "Causa un daño elevado a un enemigo" });
+                               "Causa un daño elevado a un enemigo" }, Tipo.AGUA);
     }
 
     public Squirtle(String nombre) {

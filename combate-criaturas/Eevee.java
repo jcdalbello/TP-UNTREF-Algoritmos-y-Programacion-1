@@ -15,7 +15,11 @@ public class Eevee extends Criatura
     
     public Eevee(String nombre, boolean imagenEspejada) {
         super(nombre, 20, 19, 19, new String[] { "Placaje", "Gruñido", "Ataque Rápido", "Mordida" }, imagenEspejada,
-                new String[] { "Causa un daño moderado a un enemigo", "Causa un daño moderado a un enemigo", "Causa un daño moderado a un enemigo", "Causa un daño elevado a un enemigo" });
+                new String[] { "Causa un daño moderado a un enemigo", 
+                    "Causa un daño moderado a un enemigo", 
+                    "Causa un daño moderado a un enemigo", 
+                    "Causa un daño elevado a un enemigo" },
+                    Tipo.NORMAL);
     }
     
     public Eevee(String nombre) {

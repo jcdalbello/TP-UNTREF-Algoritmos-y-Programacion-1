@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Criatura
-comment1.params=nombre\ vida\ ataque\ defensa\ nombresAtaque\ equipo1\ detallesAtaque
-comment1.target=Criatura(java.lang.String,\ int,\ int,\ int,\ java.lang.String[],\ boolean,\ java.lang.String[])
+comment1.params=nombre\ vida\ ataque\ defensa\ nombresAtaque\ equipo1\ detallesAtaque\ tipo
+comment1.target=Criatura(java.lang.String,\ int,\ int,\ int,\ java.lang.String[],\ boolean,\ java.lang.String[],\ Tipo)
 comment10.params=otro
 comment10.target=boolean\ esDelMismoEquipoQue(Criatura)
 comment11.params=otro
@@ -13,7 +13,7 @@ comment13.target=boolean\ puedeRealizarAtaque3En(Criatura)
 comment14.params=otro
 comment14.target=boolean\ puedeRealizarAtaque4En(Criatura)
 comment15.params=tipoOponente
-comment15.target=double\ factorTipo(Tipo)
+comment15.target=double\ beneficioPorTipo(Tipo)
 comment16.params=ataquePropio\ defensaEnemigo\ factorTipo
 comment16.target=int\ calculoDelDa\u00F1o(int,\ int,\ double)
 comment17.params=atacante

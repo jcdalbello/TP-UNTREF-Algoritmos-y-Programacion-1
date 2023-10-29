@@ -13,7 +13,8 @@ public class Bulbasaur extends Criatura
                 new String[] { "Causa un daño moderado a un enemigo", 
                                "Baja un nivel el Defensa al rival",
                                "Causa un daño moderado a un enemigo",
-                               "Provoca Envenenamiento con daño elevado" });
+                               "Provoca Envenenamiento con daño elevado" },
+                               Tipo.PLANTA);
     }
 
     public Bulbasaur(String nombre) {
