@@ -3,8 +3,6 @@ import java.lang.Math;
 
 import greenfoot.*;
 
-// ESTA ES UNA COPIA DEL PROYECTO, NO SE ESTA MODIFICANDO
-// EL QUE ESTA SUBIDO A GITHUB
 
 public abstract class Criatura extends Actor {
     protected final String nombre;
@@ -49,7 +47,7 @@ public abstract class Criatura extends Actor {
         this.equipo1 = equipo1;
         this.tipo = tipo;
         
-        // TODO: Hay que limpiar la consola para que no muestre los logs pasados;
+        
 
         this.imagenOriginal = new MyGreenfootImage(getImage());
         this.imagenOriginal.scale(130, 130);
@@ -161,7 +159,6 @@ public abstract class Criatura extends Actor {
         }
     } 
 
-    // Tal vez se puedan hacer dos metodos calculoDeDaño(), uno que tenga en cuenta el factor de tipo y otro que no
     private int calculoDelDaño(int ataquePropio, int defensaEnemigo, double factorTipo) {
         return (int)Math.ceil(2 * (1 + ataquePropio/defensaEnemigo) * ((Math.random()% 1.25) + 0.5) * factorTipo);
     }
@@ -259,8 +256,8 @@ public abstract class Criatura extends Actor {
 
     public String getStats() {
         return nombre + " (" + this.getClass().getSimpleName() + ")\n" +
-        " - Ataque: " + this.ataque + "\n" +
-        " - Defensa: " + this.defensa + "\n" +
+        " - Ataque: " + this.ataque + " ("+ this.ataqueOriginal+")" + "\n" +
+        " - Defensa: " + this.defensa + " ("+ this.defensaOriginal+")" +"\n" +
         " - Velocidad: 0\n"
         ;
     }
