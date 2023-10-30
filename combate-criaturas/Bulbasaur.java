@@ -22,8 +22,11 @@ public class Bulbasaur extends Criatura
     }
 
     public void atacar2(Criatura otro) {
-        int ataqueCriaturaEnemiga = otro.getDefensa();
-        otro.setDefensa((int)(ataqueCriaturaEnemiga * 0.75));
+        int defensaCriaturaEnemiga = otro.getDefensa();
+        String nombreAtaque=this.getNombresAtaque()[1];
+        otro.setDefensa((int)(defensaCriaturaEnemiga * 0.75));
+        this.logger.ataque(this,otro,nombreAtaque);
+        this.logger.afectarCaracteristica(otro,"Defensa", defensaCriaturaEnemiga,this.reducirCaracterisitica(defensaCriaturaEnemiga), false);
     }
 
     public boolean puedeRealizarAtaque2En(Criatura otro) {
@@ -41,10 +44,24 @@ public class Bulbasaur extends Criatura
 
     public void atacar4(Criatura otro) {
         // "Hace mucho daño con el tipo Planta, pero baja el ataque del usuario"
-        atacar1(otro);
+        int danioRecibido;
+        String nombreAtaque;
+        for(int i=0;i<2;i++){
+            danioRecibido=otro.recibirDaño(this);
+            nombreAtaque=this.getNombresAtaque()[3];
+            this.logger.ataque(this,otro, nombreAtaque);
+            this.logger.calcularDañoCon(this.getAtaque());
+            this.logger.dañoRecibido(otro,danioRecibido);
+        }
+        this.logger.afectarCaracteristica(this, "Ataque", this.getAtaque(),this.reducirCaracterisitica(this.getAtaque()),false);
+        this.setAtaque(this.reducirCaracterisitica(this.getAtaque()));
     }
 
     public boolean puedeRealizarAtaque4En(Criatura otro) {
         return !this.esDelMismoEquipoQue(otro);
+    }
+    
+    private int reducirCaracterisitica(int ataque){
+        return (int)(ataque*0.75);
     }
 }

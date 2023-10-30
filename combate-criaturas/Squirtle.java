@@ -9,11 +9,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Squirtle extends Criatura
 {
     public Squirtle(String nombre, boolean imagenEspejada) {
-        super(nombre, 21, 13, 17, new String[] { "Destructor", "Refugio", "Pistola Agua", "Acua Cola" }, imagenEspejada,
+        super(nombre, 21, 13, 17, new String[] { "Destructor", "Refugio", "Pistola Agua", "Rompe coraza" }, imagenEspejada,
                 new String[] { "Causa un daño moderado a un enemigo",
                                "Aumenta un nivel la Defensa al usuario.",
                                "Causa un daño moderado a un enemigo",
-                               "Causa un daño elevado a un enemigo" }, Tipo.AGUA);
+                               "Rompe su caparazon,aumentando mucho su ataque pero reduciendo mucho su defensa" }, Tipo.AGUA);
     }
 
     public Squirtle(String nombre) {
@@ -49,13 +49,11 @@ public class Squirtle extends Criatura
     }
 
     public void atacar4(Criatura otro) {
-        // Causa mucho daño de tipo agua, pero baja mucho la defensa del usuario
-        int dañoRecibido = otro.recibirDaño(this);
         String nombreDelAtaque = this.getNombresAtaque()[3];
-        
-        logger.ataque(this, otro, nombreDelAtaque);
-        logger.calcularDañoCon(this.getAtaque());
-        logger.dañoRecibido(otro, dañoRecibido);
+        this.logger.afectarCaracteristica(this,"Ataque",this.getAtaque(),(int)(this.getAtaque()*2),true);
+        this.logger.afectarCaracteristica(this,"Defensa",this.getDefensa(),(int)(this.getDefensa()*0.5),false);
+        this.setAtaque((int)(this.getAtaque()*2));
+        this.setDefensa((int)(this.getDefensa()*0.5));
     }
 
     public boolean puedeRealizarAtaque4En(Criatura otro) {
