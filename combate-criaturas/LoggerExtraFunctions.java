@@ -76,4 +76,8 @@ public class LoggerExtraFunctions extends Logger
     public static void efectoDeVeneno(Criatura criatura) {
         System.out.println("El veneno ha reducido la vida de la criatura " + criatura.toString());
     }
+    
+    public static void mostrarMensaje(String mensaje) {
+        System.out.println(mensaje);
+    }
 }

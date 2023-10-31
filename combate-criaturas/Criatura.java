@@ -122,16 +122,21 @@ public abstract class Criatura extends Actor {
         logger.ataque(this, otro, nombreDelAtaque);
         
         // Checkear la efectividad de tipos
-        double beneficioPorTipo = beneficioPorTipo(otro.tipo);
+        this.logMensajeDeEfectividadDelAtaque(otro.tipo);
+        
+        logger.calcularDañoCon(this.getAtaque());
+        logger.dañoRecibido(otro, dañoRecibido);
+    }
+    
+    protected void logMensajeDeEfectividadDelAtaque(Tipo tipo) {
+        double beneficioPorTipo = beneficioPorTipo(tipo);
+        
         if (beneficioPorTipo == 2.0) {
             System.out.println("El ataque es super efectivo");
         }
         if (beneficioPorTipo == 0.5) {
             System.out.println("El ataque es poco efectivo");
         }
-        
-        logger.calcularDañoCon(this.getAtaque());
-        logger.dañoRecibido(otro, dañoRecibido);
     }
 
     public abstract void atacar2(Criatura otro);
@@ -281,7 +286,6 @@ public abstract class Criatura extends Actor {
         return nombre + " (" + this.getClass().getSimpleName() + ")\n" +
         " - Ataque: " + this.ataque + " ("+ this.ataqueOriginal+")" + "\n" +
         " - Defensa: " + this.defensa + " ("+ this.defensaOriginal+")" +"\n" +
-        " - Velocidad: 0\n" +
         " - Estado: " + this.estado
         ;
     }

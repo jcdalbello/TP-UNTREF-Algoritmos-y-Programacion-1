@@ -59,6 +59,7 @@ public class Bulbasaur extends Criatura
         this.setAtaque(ataqueCriatura);
 
         this.logger.ataque(this, otro, nombreAtaque);
+        this.logMensajeDeEfectividadDelAtaque(otro.tipo);
         this.logger.calcularDañoCon(this.getAtaque());
         this.logger.dañoRecibido(otro, dañoRecibido);
 
