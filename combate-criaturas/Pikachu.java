@@ -1,6 +1,6 @@
 public class Pikachu extends Criatura {
     public Pikachu(String nombre, boolean imagenEspejada) {
-        super(nombre, 16, 18, 13, new String[] { "Placaje", "Gruñido", "Onda Trueno", "Tacleada de voltios" }, imagenEspejada,
+        super(nombre, 16, 18, 13, new String[] { "Impactrueno", "Gruñido", "Onda Trueno", "Tacleada de voltios" }, imagenEspejada,
             new String[] { "Causa un daño moderado a un enemigo",
                 "Reduce el ataque del enemigo en un 25%",
                 "Paraliza al objetivo",

@@ -9,10 +9,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Squirtle extends Criatura
 {
     public Squirtle(String nombre, boolean imagenEspejada) {
-        super(nombre, 21, 13, 17, new String[] { "Destructor", "Ebullicion", "Pistola Agua", "Rompe coraza" }, imagenEspejada,
-                new String[] { "Causa un daño moderado a un enemigo",
+        super(nombre, 21, 13, 17, new String[] { "Pistola Agua", "Ebullicion", "Refugio", "Rompe coraza" }, imagenEspejada,
+                new String[] { "Causa daño de tipo agua a un enemigo",
                                "Quema al objetivo con vapor a altas temperaturas",
-                               "Causa un daño moderado a un enemigo",
+                               "Aumenta la defensa del usuario",
                                "Rompe su caparazon, aumentando mucho su ataque pero reduciendo mucho su defensa" }, Tipo.AGUA);
     }
 
@@ -36,17 +36,17 @@ public class Squirtle extends Criatura
     }
 
     public void atacar3(Criatura otro) {
-        // Causa daño de tipo agua
-        int dañoRecibido = otro.recibirDaño(this);
+        int defensaUsuario = this.getDefensa();
         String nombreDelAtaque = this.getNombresAtaque()[2];
-
-        logger.ataque(this, otro, nombreDelAtaque);
-        logger.calcularDañoCon(this.getAtaque());
-        logger.dañoRecibido(otro, dañoRecibido);
+        
+        this.logger.ataqueASiMismo(this, nombreDelAtaque);
+        this.logger.afectarCaracteristica(this, "Defensa", defensaUsuario, (int)(defensaUsuario * 1.25), true);
+        
+        this.setDefensa((int)(defensaUsuario * 1.25));
     }
 
     public boolean puedeRealizarAtaque3En(Criatura otro) {
-        return !this.esDelMismoEquipoQue(otro);
+        return otro == this;
     }
 
     public void atacar4(Criatura otro) {
