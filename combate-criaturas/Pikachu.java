@@ -1,10 +1,10 @@
 public class Pikachu extends Criatura {
     public Pikachu(String nombre, boolean imagenEspejada) {
-        super(nombre, 16, 18, 13, new String[] { "Placaje", "Gruñido", "Impactrueno", "Onda Trueno" }, imagenEspejada,
+        super(nombre, 16, 18, 13, new String[] { "Placaje", "Gruñido", "Onda Trueno", "Tacleada de voltios" }, imagenEspejada,
             new String[] { "Causa un daño moderado a un enemigo",
-                           "Reduce el ataque del enemigo en un 25%",
-                           "Causa un daño de tipo electrico a un enemigo",
-                           "Causa un gran daño de tipo electrico al enemigo, pero el usuario recibe daño de retroceso."},
+                "Reduce el ataque del enemigo en un 25%",
+                "Paraliza al objetivo",
+                "Causa daño e incrementa el ataque del usuario, pero este recibe daño de retroceso igual a la mitad de su vida actual"},
             Tipo.ELECTRICO);
     }
 
@@ -13,14 +13,13 @@ public class Pikachu extends Criatura {
     }
 
     public void atacar2(Criatura otro) {
-        // Gruñido, reduce el ataque del enemigo un 25%
         int ataqueCriaturaEnemiga = otro.getAtaque();
         String nombreDelAtaque = this.getNombresAtaque()[1];
-        
+
         this.logger.ataque(this, otro, nombreDelAtaque);
         this.logger.afectarCaracteristica(otro, "Ataque", ataqueCriaturaEnemiga, (int)(ataqueCriaturaEnemiga * 0.75), false);
-        
-        otro.setAtaque((int)(ataqueCriaturaEnemiga * 0.75));
+
+        otro.setAtaque((int)(ataqueCriaturaEnemiga * 0.75));        
     }
 
     public boolean puedeRealizarAtaque2En(Criatura otro) {        
@@ -28,13 +27,15 @@ public class Pikachu extends Criatura {
     }
 
     public void atacar3(Criatura otro) {
-        // Falta la implementación de tipos
-        int dañoRecibido = otro.recibirDaño(this);
+        // Paralizar al objetivo
         String nombreDelAtaque = this.getNombresAtaque()[2];
         
-        logger.ataque(this, otro, nombreDelAtaque);
-        logger.calcularDañoCon(this.getAtaque());
-        logger.dañoRecibido(otro, dañoRecibido);
+        this.logger.ataque(this, otro, nombreDelAtaque);
+        this.logger.cambiarEstado(otro, Estado.PARALIZADO);
+        
+        if (otro.estado == Estado.SALUDABLE) {
+            otro.setEstado(Estado.PARALIZADO);
+        }
     }
 
     public boolean puedeRealizarAtaque3En(Criatura otro) {
@@ -42,13 +43,19 @@ public class Pikachu extends Criatura {
     }
 
     public void atacar4(Criatura otro) {
-        // Falta la implementación de tipos
         int dañoRecibido = otro.recibirDaño(this);
+        int ataqueCriatura = this.getAtaque();
         String nombreDelAtaque = this.getNombresAtaque()[3];
-        
+
         logger.ataque(this, otro, nombreDelAtaque);
         logger.calcularDañoCon(this.getAtaque());
         logger.dañoRecibido(otro, dañoRecibido);
+        
+        this.logger.afectarCaracteristica(this, "Ataque", ataqueCriatura, (int)(ataqueCriatura * 1.25), true);
+        this.setAtaque((int)(ataqueCriatura * 1.25));
+
+        this.logger.dañorDeRetroceso(this, this.getVida() / 2);
+        this.setVida(this.getVida() / 2);
     }
 
     public boolean puedeRealizarAtaque4En(Criatura otro) {

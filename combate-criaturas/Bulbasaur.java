@@ -10,11 +10,11 @@ public class Bulbasaur extends Criatura
 {
     public Bulbasaur(String nombre, boolean imagenEspejada) {
         super(nombre, 20, 15, 15, new String[] { "Placaje", "Latigo", "Polvo Veneno", "Tormenta de hojas" }, imagenEspejada,
-                new String[] { "Causa un daño moderado a un enemigo", 
-                               "Baja un nivel el Defensa al rival",
-                               "Causa un daño moderado a un enemigo",
-                               "Provoca Envenenamiento con daño elevado" },
-                               Tipo.PLANTA);
+            new String[] { "Causa un daño moderado a un enemigo", 
+                "Baja un nivel el Defensa al rival",
+                "Envenena al objetivo",
+                "Hace mucho daño con el tipo Planta, pero baja el ataque del usuario" },
+            Tipo.PLANTA);
     }
 
     public Bulbasaur(String nombre) {
@@ -34,8 +34,14 @@ public class Bulbasaur extends Criatura
     }
 
     public void atacar3(Criatura otro) {
-        // Causa el estado "envenenado" al enemigo
-        atacar1(otro);
+        String nombreDelAtaque = this.getNombresAtaque()[2];
+
+        this.logger.ataque(this, otro, nombreDelAtaque);
+        this.logger.cambiarEstado(otro, Estado.ENVENENADO);
+
+        if (otro.estado == Estado.SALUDABLE) {
+            otro.setEstado(Estado.ENVENENADO);
+        }
     }
 
     public boolean puedeRealizarAtaque3En(Criatura otro) {
@@ -44,15 +50,18 @@ public class Bulbasaur extends Criatura
 
     public void atacar4(Criatura otro) {
         // "Hace mucho daño con el tipo Planta, pero baja el ataque del usuario"
-        int danioRecibido;
-        String nombreAtaque;
-        for(int i=0;i<2;i++){
-            danioRecibido=otro.recibirDaño(this);
-            nombreAtaque=this.getNombresAtaque()[3];
-            this.logger.ataque(this,otro, nombreAtaque);
-            this.logger.calcularDañoCon(this.getAtaque());
-            this.logger.dañoRecibido(otro,danioRecibido);
-        }
+        String nombreAtaque = this.getNombresAtaque()[3];
+
+        int ataqueCriatura = this.getAtaque();
+
+        this.setAtaque((int)(ataqueCriatura * 1.50));
+        int dañoRecibido = otro.recibirDaño(this);
+        this.setAtaque(ataqueCriatura);
+
+        this.logger.ataque(this, otro, nombreAtaque);
+        this.logger.calcularDañoCon(this.getAtaque());
+        this.logger.dañoRecibido(otro, dañoRecibido);
+
         this.logger.afectarCaracteristica(this, "Ataque", this.getAtaque(),this.reducirCaracterisitica(this.getAtaque()),false);
         this.setAtaque(this.reducirCaracterisitica(this.getAtaque()));
     }
@@ -60,7 +69,7 @@ public class Bulbasaur extends Criatura
     public boolean puedeRealizarAtaque4En(Criatura otro) {
         return !this.esDelMismoEquipoQue(otro);
     }
-    
+
     private int reducirCaracterisitica(int ataque){
         return (int)(ataque*0.75);
     }

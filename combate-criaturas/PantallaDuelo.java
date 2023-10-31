@@ -28,12 +28,13 @@ public class PantallaDuelo extends World {
 
     private void agregarCriaturas() {
         // Jugador
-        criaturas[0] = new Pikachu("Pikachu");
-        criaturas[1] = new Squirtle("Squirtle");
+        criaturas[0] = new Pikachu("PikaPika");
+        criaturas[1] = new Squirtle("Tortuguita");
 
         // Rival
-        criaturas[2] = new Bulbasaur("Bulbasaur", true);
+        criaturas[2] = new Bulbasaur("Saur", true);
         criaturas[3] = new Eevee("Eevee", true);
+        //criaturas[3] = new Chikorita("Chiko", true);
 
         addObject(criaturas[0], 100, 80);
         addObject(criaturas[1], 240, 80);
@@ -49,8 +50,15 @@ public class PantallaDuelo extends World {
     public void turno() {
         int cantidadDeCriaturasVivas;
         
+        // Daño del veneno
+        for (int i = 0; i < criaturas.length; i++) {
+            if (criaturas[i].estado == Estado.ENVENENADO) {
+                criaturas[i].logger.efectoDeVeneno(criaturas[i]);
+                criaturas[i].recibirDañoFijo((int)(criaturas[i].getVida()*(1/8)));
+            }
+        }
+        
         // Detectar si ambos Pokemon de algun jugador estan debilitados, y si es asi, terminar el turno automaticamente retornando
-        // CAMBIAR A ALGUNA PANTALLA DE VICTORIA
         if (criaturas[0].getVida() == 0 && criaturas[1].getVida() == 0) {
             System.out.println("Jugador 2 gana!");
             return;
