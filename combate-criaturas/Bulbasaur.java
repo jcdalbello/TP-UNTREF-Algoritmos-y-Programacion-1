@@ -9,8 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Bulbasaur extends Criatura
 {
     public Bulbasaur(String nombre, boolean imagenEspejada) {
-        super(nombre, 20, 15, 15, new String[] { "Placaje", "Latigo", "Polvo Veneno", "Tormenta de hojas" }, imagenEspejada,
-            new String[] { "Causa un daño moderado a un enemigo", 
+        super(nombre, 20, 15, 15, new String[] { "Hoja afilada", "Latigo", "Polvo Veneno", "Tormenta de hojas" }, imagenEspejada,
+            new String[] { "Causa daño de tipo planta a un enemigo", 
                 "Baja un nivel el Defensa al rival",
                 "Envenena al objetivo",
                 "Hace mucho daño con el tipo Planta, pero baja el ataque del usuario" },
