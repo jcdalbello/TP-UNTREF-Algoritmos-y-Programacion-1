@@ -1,7 +1,7 @@
 public class Pikachu extends Criatura {
     public Pikachu(String nombre, boolean imagenEspejada) {
         super(nombre, 16, 18, 13, new String[] { "Impactrueno", "Gruñido", "Onda Trueno", "Tacleada de voltios" }, imagenEspejada,
-            new String[] { "Causa un daño moderado a un enemigo",
+            new String[] { "Causa daño de tipo electrico a un enemigo",
                 "Reduce el ataque del enemigo en un 25%",
                 "Paraliza al objetivo",
                 "Causa daño e incrementa el ataque del usuario, pero este recibe daño de retroceso igual a la mitad de su vida actual"},
@@ -48,6 +48,9 @@ public class Pikachu extends Criatura {
         String nombreDelAtaque = this.getNombresAtaque()[3];
 
         logger.ataque(this, otro, nombreDelAtaque);
+        
+        this.logMensajeDeEfectividadDelAtaque(otro.tipo);
+        
         logger.calcularDañoCon(this.getAtaque());
         logger.dañoRecibido(otro, dañoRecibido);
         

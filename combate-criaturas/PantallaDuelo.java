@@ -35,8 +35,9 @@ public class PantallaDuelo extends World {
         // Rival
         // criaturas[2] = new Bulbasaur("Saur", true);
         criaturas[2] = new Squirtle("Tortuguita", true);
-        criaturas[3] = new Eevee("Eevee", true);
-        //criaturas[3] = new Chikorita("Chiko", true);
+        // criaturas[3] = new Eevee("Eevee", true);
+        criaturas[3] = new Charmander("Char", true);
+        // criaturas[3] = new Chikorita("Chiko", true);
 
         addObject(criaturas[0], 100, 80);
         addObject(criaturas[1], 240, 80);
