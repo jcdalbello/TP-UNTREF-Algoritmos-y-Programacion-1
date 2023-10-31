@@ -24,10 +24,7 @@ public class Chikorita extends Criatura
 
     public void atacar2(Criatura otro) {
         String nombreDelAtaque = this.getNombresAtaque()[1];
-        
-        // TODO: Faltan implementar los estados
-        // Elimina el estado negativo del pokemon enemigo, lo deja en null, o en un string en particular, como 'normal'
-        
+         
         if (otro == this) {
             this.logger.ataqueASiMismo(this, nombreDelAtaque);
         }
@@ -35,7 +32,8 @@ public class Chikorita extends Criatura
             this.logger.asistir(this, otro, nombreDelAtaque);
         }
         
-        this.logger.curacionDeCambioDeEstado(otro);
+        this.logger.cambiarEstado(otro, Estado.SALUDABLE);
+        otro.setEstado(Estado.SALUDABLE);
     }
 
     public boolean puedeRealizarAtaque2En(Criatura otro) {
@@ -75,6 +73,10 @@ public class Chikorita extends Criatura
         this.logger.asistir(this, otro, nombreDelAtaque);
         this.logger.resetearCaracteristica(otro, "Ataque", otro.getAtaque());
         this.logger.resetearCaracteristica(otro, "Defensa", otro.getDefensa());
+        
+        this.logger.cambiarEstado(otro, Estado.SALUDABLE);
+        otro.setEstado(Estado.SALUDABLE);
+        
         this.logger.sacrificio(this);
         
         // Chikorita se muere :'(

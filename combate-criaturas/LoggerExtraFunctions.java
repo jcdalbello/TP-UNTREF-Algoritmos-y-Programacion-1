@@ -1,5 +1,5 @@
 public class LoggerExtraFunctions extends Logger 
-{
+{    
     public LoggerExtraFunctions() { }
 
     public static void calcularDañoCon(int ataque) {
@@ -48,5 +48,32 @@ public class LoggerExtraFunctions extends Logger
     
     public static void sacrificio(Criatura criatura) {
         System.out.println("La criatura " + criatura.toString() + " se ha sacrificado por el bien del equipo");
+    }
+    
+    public static void dañorDeRetroceso(Criatura criatura, int dañoRecibido) {
+        System.out.println("La criatura " + criatura.toString() + " ha recibido " + dañoRecibido + " de daño de retroceso");
+    }
+    
+    public static void cambiarEstado(Criatura criatura, Estado nuevoEstado) {
+        Estado estadoActual = criatura.estado;
+        
+        if (estadoActual == nuevoEstado) {
+            System.out.println("La criatura " + criatura.toString() + " ya cuenta con el estado " + nuevoEstado);
+            return;
+        }
+        else if (nuevoEstado == Estado.SALUDABLE) {
+            System.out.println("La criatura " + criatura.toString() + " se ha curado, su estado pasó a ser " + nuevoEstado);
+            return;
+        }
+        else if (/*nuevoEstado != Estado.SALUDABLE && */estadoActual != Estado.SALUDABLE) {
+            System.out.println("Si la criatura " + criatura.toString() + " ya cuenta con un estado alterado que no sea SALUDABLE, no puede sufrir de otro");
+            return;
+        }
+        
+        System.out.println("El estado de la criatura " + criatura.toString() + " pasó de " + estadoActual + " a " + nuevoEstado);
+    }
+    
+    public static void efectoDeVeneno(Criatura criatura) {
+        System.out.println("El veneno ha reducido la vida de la criatura " + criatura.toString());
     }
 }

@@ -21,6 +21,7 @@ public abstract class Criatura extends Actor {
     protected int ataque;
     protected int defensa;
     protected Tipo tipo;
+    protected Estado estado;
 
     private UIInfoCriatura uiInfoCriatura;
 
@@ -46,9 +47,8 @@ public abstract class Criatura extends Actor {
         
         this.equipo1 = equipo1;
         this.tipo = tipo;
+        this.estado = Estado.SALUDABLE;
         
-        
-
         this.imagenOriginal = new MyGreenfootImage(getImage());
         this.imagenOriginal.scale(130, 130);
 
@@ -165,10 +165,16 @@ public abstract class Criatura extends Actor {
 
     protected int recibirDaño(Criatura atacante) {
         double beneficioPorTipo = beneficioPorTipo(atacante.tipo);
-        int dañoRecibido = calculoDelDaño(atacante.ataque, this.defensa, beneficioPorTipo);
+        int ataque  = atacante.estado == Estado.QUEMADO ? atacante.ataque / 2 : atacante.ataque;
+        int defensa = this.estado == Estado.PARALIZADO ? this.defensa / 2 : this. defensa;
+        
+        int dañoRecibido = calculoDelDaño(ataque, defensa, beneficioPorTipo);
         
         if (this.vida <= dañoRecibido) {
             this.setVida(0);          
+        }
+        else if (dañoRecibido <= 0) {
+            this.setVida(this.getVida() - 1);
         }
         else {
             this.setVida(this.getVida() - dañoRecibido);
@@ -184,6 +190,9 @@ public abstract class Criatura extends Actor {
     protected int recibirDañoFijo(int dañoFijo) {
         if (this.vida <= dañoFijo) {
             this.setVida(0);          
+        }
+        else if (dañoFijo <= 0) {
+            this.setVida(this.getVida() - 1);
         }
         else {
             this.setVida(this.getVida() - dañoFijo);
@@ -232,6 +241,10 @@ public abstract class Criatura extends Actor {
     public int getDefensaOriginal() {
         return defensaOriginal;
     }
+    
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
 
     public boolean esEquipo1() {
         return equipo1;
@@ -258,7 +271,8 @@ public abstract class Criatura extends Actor {
         return nombre + " (" + this.getClass().getSimpleName() + ")\n" +
         " - Ataque: " + this.ataque + " ("+ this.ataqueOriginal+")" + "\n" +
         " - Defensa: " + this.defensa + " ("+ this.defensaOriginal+")" +"\n" +
-        " - Velocidad: 0\n"
+        " - Velocidad: 0\n" +
+        " - Estado: " + this.estado
         ;
     }
 }

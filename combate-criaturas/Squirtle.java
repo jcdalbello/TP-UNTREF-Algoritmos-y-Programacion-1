@@ -9,11 +9,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Squirtle extends Criatura
 {
     public Squirtle(String nombre, boolean imagenEspejada) {
-        super(nombre, 21, 13, 17, new String[] { "Destructor", "Refugio", "Pistola Agua", "Rompe coraza" }, imagenEspejada,
+        super(nombre, 21, 13, 17, new String[] { "Destructor", "Ebullicion", "Pistola Agua", "Rompe coraza" }, imagenEspejada,
                 new String[] { "Causa un daño moderado a un enemigo",
-                               "Aumenta un nivel la Defensa al usuario.",
+                               "Quema al objetivo con vapor a altas temperaturas",
                                "Causa un daño moderado a un enemigo",
-                               "Rompe su caparazon,aumentando mucho su ataque pero reduciendo mucho su defensa" }, Tipo.AGUA);
+                               "Rompe su caparazon, aumentando mucho su ataque pero reduciendo mucho su defensa" }, Tipo.AGUA);
     }
 
     public Squirtle(String nombre) {
@@ -21,17 +21,18 @@ public class Squirtle extends Criatura
     }
 
     public void atacar2(Criatura otro) {
-        int defensaPokemonUsuario = this.getDefensa();
         String nombreDelAtaque = this.getNombresAtaque()[1];
         
-        this.logger.ataqueASiMismo(this, nombreDelAtaque);
-        this.logger.afectarCaracteristica(this, "Defensa", defensaPokemonUsuario, (int)(defensaPokemonUsuario * 1.25), true);
+        this.logger.ataque(this, otro, nombreDelAtaque);
+        this.logger.cambiarEstado(otro, Estado.QUEMADO);
         
-        this.setDefensa((int)(defensaPokemonUsuario * 1.25));
+        if (otro.estado == Estado.SALUDABLE) {
+            otro.setEstado(Estado.QUEMADO);
+        }
     }
 
     public boolean puedeRealizarAtaque2En(Criatura otro) {
-        return otro == this;
+        return !this.esDelMismoEquipoQue(otro);
     }
 
     public void atacar3(Criatura otro) {
@@ -57,6 +58,6 @@ public class Squirtle extends Criatura
     }
 
     public boolean puedeRealizarAtaque4En(Criatura otro) {
-        return !this.esDelMismoEquipoQue(otro);
+        return otro == this;
     }
 }
