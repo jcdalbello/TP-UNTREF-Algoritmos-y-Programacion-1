@@ -1,10 +1,10 @@
 public class Pikachu extends Criatura {
     public Pikachu(String nombre, boolean imagenEspejada) {
         super(nombre, 16, 18, 13, new String[] { "Impactrueno", "Gruñido", "Onda Trueno", "Tacleada de voltios" }, imagenEspejada,
-            new String[] { "Causa daño de tipo electrico a un enemigo",
-                "Reduce el ataque del enemigo en un 25%",
-                "Paraliza al objetivo",
-                "Causa daño e incrementa el ataque del usuario, pero este recibe daño de retroceso igual a la mitad de su vida actual"},
+            new String[] { "Causa daño de tipo ELECTRICO a un enemigo.",
+                "Reduce el ataque del enemigo.",
+                "Paraliza al rival.",
+                "Causa daño de tipo ELECTRICO e incrementa el ataque del usuario, pero este recibe daño de retroceso igual a la mitad de su vida actual."},
             Tipo.ELECTRICO);
     }
 
