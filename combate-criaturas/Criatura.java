@@ -299,6 +299,7 @@ public abstract class Criatura extends Actor {
         return nombre + " (" + this.getClass().getSimpleName() + ")\n" +
         " - Ataque: " + this.ataque + " ("+ this.ataqueOriginal+")" + "\n" +
         " - Defensa: " + this.defensa + " ("+ this.defensaOriginal+")" +"\n" +
+        " - Tipo: " + this.tipo + "\n" +
         " - Estado: " + this.estado
         ;
     }
