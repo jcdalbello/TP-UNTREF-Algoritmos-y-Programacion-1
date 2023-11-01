@@ -3,10 +3,10 @@ public class Charmander extends Criatura {
     
     public Charmander(String nombre, boolean imagenEspejada) {
         super(nombre, 15, 22, 13, new String[] { "Ascuas", "Calentar motores", "Fuego fatuo", "Erupcion" }, imagenEspejada,
-            new String[] { "Causa daño de tipo fuego al objetivo",
-                "El usuario entra en calor, aumentando su ataque",
-                "Causa el estado alterado QUEMADO en el objetivo",
-                "Causa mucho daño de tipo fuego, pero por el calor que genera, el usuario solo puede usarlo una vez por combate"},
+            new String[] { "Causa daño de tipo FUEGO al objetivo.",
+                "El usuario entra en calor, aumentando su ataque.",
+                "Quema al rival.",
+                "Causa mucho daño de tipo FUEGO, pero por el calor que genera, solo se puede usar una vez por combate"},
             Tipo.FUEGO); 
         erupcionYaFueUsado = false;
     }

@@ -10,9 +10,9 @@ public class Chikorita extends Criatura
 {
     public Chikorita(String nombre, boolean imagenEspejada) {
         super(nombre, 24, 11, 18, new String[] { "Latigo cepa", "Aromaterapia", "Refuerzo", "Deseo cura" }, imagenEspejada,
-                new String[] { "Causa daño de tipo planta a un enemigo.",
+                new String[] { "Causa daño de tipo PLANTA a un enemigo.",
                                "Cura los estados alterados de un miembro del equipo.",
-                               "Aumenta el ataque y la defensa de su compañero en un 25%.",
+                               "Aumenta el ataque y la defensa de su compañero.",
                                 // 'Deseo cura' cura la vida del compañero al 100%, saca los efectos de estado y resetea las caracteristicas
                                "Cura completamente a su compañero, pero el usuario cae debilitado." }, 
                 Tipo.PLANTA);

@@ -5,10 +5,10 @@ public class Eevee extends Criatura
 {
     public Eevee(String nombre, boolean imagenEspejada) {
         super(nombre, 20, 19, 19, new String[] { "Placaje", "Chivo expiatorio", "Truco del azar", "Imagen" }, imagenEspejada,
-                new String[] { "Causa un daño moderado a un enemigo", 
-                    "El usuario adquiere el estado alterado de su compañero, curandolo en el proceso, y reemplazando el estado anterior", 
+                new String[] { "Causa daño de tipo NORMAL a un enemigo.", 
+                    "El usuario intercambia su estado alterado con el de su compañero, curandolo en el proceso.", 
                     "El usuario llama a una fuerza misteriosa, que tiene una probabilidad aleatoria de dejar al usuario o al objetivo con un estado alterado cualquiera, o curar el que ya tienen", 
-                    "Ataca dos veces si el usuario sufre de un estado alterado" },
+                    "Ataca dos veces con un ataque de tipo NORMAL si el usuario sufre de un estado alterado" },
                     Tipo.NORMAL);
     }
     

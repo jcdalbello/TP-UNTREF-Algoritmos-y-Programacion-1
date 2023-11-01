@@ -10,10 +10,10 @@ public class Squirtle extends Criatura
 {
     public Squirtle(String nombre, boolean imagenEspejada) {
         super(nombre, 21, 13, 17, new String[] { "Pistola Agua", "Ebullicion", "Refugio", "Rompe coraza" }, imagenEspejada,
-                new String[] { "Causa daño de tipo agua a un enemigo",
-                               "Quema al objetivo con vapor a altas temperaturas",
-                               "Aumenta la defensa del usuario",
-                               "Rompe su caparazon, aumentando mucho su ataque pero reduciendo mucho su defensa" }, Tipo.AGUA);
+                new String[] { "Causa daño de tipo AGUA a un enemigo.",
+                               "Quema al objetivo con vapor a altas temperaturas.",
+                               "Aumenta la defensa del usuario.",
+                               "El usuario rompe su caparazon, aumentando mucho su ataque pero tambien reduciendo mucho su defensa" }, Tipo.AGUA);
     }
 
     public Squirtle(String nombre) {
