@@ -91,6 +91,44 @@ public class MyGreenfootImage extends GreenfootImage {
             }
         }
     }
+    
+    // Escalas de colores para indicar el estado alterado ----------------------------
+    public void greenscale() {
+        for (int x = 0; x < getWidth(); x++) {
+            for (int y = 0; y < getHeight(); y++) {
+                Color colorHere = getColorAt(x, y);
+                int r = colorHere.getRed();
+                int g = colorHere.getGreen();
+                int b = colorHere.getBlue();
+                setColorAt(x, y, new Color(r/2, 255-(255-g)/2, b/2, colorHere.getAlpha()));
+            }
+        }
+    }
+    
+    public void redscale() {
+        for (int x = 0; x < getWidth(); x++) {
+            for (int y = 0; y < getHeight(); y++) {
+                Color colorHere = getColorAt(x, y);
+                int r = colorHere.getRed();
+                int g = colorHere.getGreen();
+                int b = colorHere.getBlue();
+                setColorAt(x, y, new Color(255-(255-r)/2, g/2, b/2, colorHere.getAlpha()));
+            }
+        }
+    }
+    
+    public void yellowscale() {
+        for (int x = 0; x < getWidth(); x++) {
+            for (int y = 0; y < getHeight(); y++) {
+                Color colorHere = getColorAt(x, y);
+                int r = colorHere.getRed();
+                int g = colorHere.getGreen();
+                int b = colorHere.getBlue();
+                setColorAt(x, y, new Color(255-(255-r)/2, 255-(255-g)/2, b/2, colorHere.getAlpha()));
+            }
+        }
+    }
+    // -------------------------------------------------------------------------------
 
     public void flipHorizontally() {
         mirrorHorizontally();

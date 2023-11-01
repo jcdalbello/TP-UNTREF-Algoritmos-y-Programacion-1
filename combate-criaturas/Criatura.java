@@ -92,6 +92,19 @@ public abstract class Criatura extends Actor {
     public void render() {
         MyGreenfootImage nuevaImagen = new MyGreenfootImage(imagenOriginal) {
                 public void configurar() {
+                    if (estado== Estado.ENVENENADO) {
+                        greenscale();
+                    }
+                    
+                    if (estado== Estado.QUEMADO) {
+                        redscale();
+                    }
+                    
+                    if (estado== Estado.PARALIZADO) {
+                        yellowscale();
+                    }
+                    
+                    
                     if (vida == 0) {
                         grayscale();
                     }

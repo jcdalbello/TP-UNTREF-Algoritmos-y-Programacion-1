@@ -7,7 +7,7 @@ public class Charmander extends Criatura {
                 "El usuario entra en calor, aumentando su ataque",
                 "Causa el estado alterado QUEMADO en el objetivo",
                 "Causa mucho daño de tipo fuego, pero por el calor que genera, el usuario solo puede usarlo una vez por combate"},
-            Tipo.ELECTRICO); 
+            Tipo.FUEGO); 
         erupcionYaFueUsado = false;
     }
 
