@@ -67,7 +67,7 @@ public class Eevee extends Criatura
         int dañoRecibido;
         String nombreAtaque = this.getNombresAtaque()[3];;
         
-        int cantidadDeAtaques = this.estado != Estado.SALUDABLE ? 1 : 2;
+        int cantidadDeAtaques = this.estado == Estado.SALUDABLE ? 1 : 2;
         
         for(int i = 0; i < cantidadDeAtaques; i++){
             dañoRecibido = otro.recibirDaño(this);
