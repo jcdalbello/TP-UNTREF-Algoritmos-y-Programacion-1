@@ -92,6 +92,7 @@ public abstract class Criatura extends Actor {
     public void render() {
         MyGreenfootImage nuevaImagen = new MyGreenfootImage(imagenOriginal) {
                 public void configurar() {
+                    // Actualiza la imagen de la criatura segun su estado alterado
                     if (estado== Estado.ENVENENADO) {
                         greenscale();
                     }

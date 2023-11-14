@@ -49,7 +49,6 @@ public class Bulbasaur extends Criatura
     }
 
     public void atacar4(Criatura otro) {
-        // "Hace mucho daño con el tipo Planta, pero baja el ataque del usuario"
         String nombreAtaque = this.getNombresAtaque()[3];
 
         int ataqueCriatura = this.getAtaque();
