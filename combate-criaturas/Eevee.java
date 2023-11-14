@@ -59,7 +59,6 @@ public class Eevee extends Criatura
     }
 
     public boolean puedeRealizarAtaque3En(Criatura otro) {
-        // return !this.esDelMismoEquipoQue(otro);
         return true;
     }
 

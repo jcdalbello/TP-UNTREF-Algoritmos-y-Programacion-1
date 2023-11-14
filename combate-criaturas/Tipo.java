@@ -1,4 +1,3 @@
-
 public enum Tipo {
     PLANTA,
     ELECTRICO,

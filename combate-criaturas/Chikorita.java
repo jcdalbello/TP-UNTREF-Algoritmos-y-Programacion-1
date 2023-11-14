@@ -13,7 +13,6 @@ public class Chikorita extends Criatura
                 new String[] { "Causa daño de tipo PLANTA a un enemigo.",
                                "Cura los estados alterados de un miembro del equipo.",
                                "Aumenta el ataque y la defensa de su compañero.",
-                                // 'Deseo cura' cura la vida del compañero al 100%, saca los efectos de estado y resetea las caracteristicas
                                "Cura completamente a su compañero, pero el usuario cae debilitado." }, 
                 Tipo.PLANTA);
     }
@@ -79,7 +78,6 @@ public class Chikorita extends Criatura
         
         this.logger.sacrificio(this);
         
-        // Chikorita se muere :'(
         this.recibirDañoFijo(this.getVida());
     }
 

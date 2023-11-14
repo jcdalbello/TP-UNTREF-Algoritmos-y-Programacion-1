@@ -27,7 +27,6 @@ public class Pikachu extends Criatura {
     }
 
     public void atacar3(Criatura otro) {
-        // Paralizar al objetivo
         String nombreDelAtaque = this.getNombresAtaque()[2];
         
         this.logger.ataque(this, otro, nombreDelAtaque);
