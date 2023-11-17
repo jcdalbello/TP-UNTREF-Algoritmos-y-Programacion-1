@@ -146,10 +146,10 @@ public abstract class Criatura extends Actor {
         double beneficioPorTipo = beneficioPorTipo(tipo);
         
         if (beneficioPorTipo == 2.0) {
-            System.out.println("El ataque es super efectivo");
+            System.out.println("El ataque es super efectivo (daño * 1.5)");
         }
         if (beneficioPorTipo == 0.5) {
-            System.out.println("El ataque es poco efectivo");
+            System.out.println("El ataque es poco efectivo (daño * 0.5)");
         }
     }
 
