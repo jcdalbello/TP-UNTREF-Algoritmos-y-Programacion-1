@@ -10,7 +10,6 @@ public class PantallaVictoria extends World
         Texto textoGanador = new Texto("Jugador " + ganador + " gana!", 50, Color.BLACK, Color.WHITE);
         addObject(textoGanador, 350, 200);
         
-        
         GreenfootImage imagenFondo = new GreenfootImage("ending_screen.png");
         getBackground().drawImage(imagenFondo, 0, 0);
         
