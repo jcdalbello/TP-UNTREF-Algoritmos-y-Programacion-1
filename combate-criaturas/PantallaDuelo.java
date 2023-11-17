@@ -65,13 +65,15 @@ public class PantallaDuelo extends World {
         
         // Detectar si ambos Pokemon de algun jugador estan debilitados, y si es asi, terminar el turno automaticamente retornando
         if (criaturas[0].getVida() == 0 && criaturas[1].getVida() == 0) {
-            this.criaturas[0].logger.mostrarMensaje("Jugador 2 gana!");
+            // this.criaturas[0].logger.mostrarMensaje("Jugador 2 gana!");
+            System.out.println("Jugador 2 gana!");
             Greenfoot.setWorld(new PantallaVictoria(2));
             
             return;
         }
         if (criaturas[2].getVida() == 0 && criaturas[3].getVida() == 0) {
-            this.criaturas[0].logger.mostrarMensaje("Jugador 1 gana!");
+            // this.criaturas[0].logger.mostrarMensaje("Jugador 1 gana!");
+            System.out.println("Jugador 1 gana!");
             Greenfoot.setWorld(new PantallaVictoria(1));
             
             return;
